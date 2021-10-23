@@ -15,13 +15,10 @@ class Room:
         return len(self.songs)
 
 
-#test_capacity_avalible_and_guest_can_pay
-#test_capacity_avalible_and_guest_cant_pay
-#test_capacity_not_avalible
-
     def check_in(self,guest): 
         if self.capacity>len(self.guests):
             if guest.pay_entrance_fee(self.price):
+                guest.check_favorite_song(self)
                 self.till+=self.price
                 return self.guests.append(guest)
             else:
