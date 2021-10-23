@@ -1,10 +1,11 @@
 class Room:
-    def __init__(self,name,till,capacity):
+    def __init__(self,name,price,capacity):
         self.name=name
-        self.till=till
+        self.price=price
         self.capacity=capacity
         self.songs=[]
-        self.guest=[]
+        self.guests=[]
+        self.till=0
 
   
     def add_song(self,song):
@@ -13,17 +14,30 @@ class Room:
     def song_count(self):
         return len(self.songs)
 
-    def check_in(self,guests):
-        if self.capacity>len(self.guest):
-            return self.guest.append(guests)
+
+#test_capacity_avalible_and_guest_can_pay
+#test_capacity_avalible_and_guest_cant_pay
+#test_capacity_not_avalible
+
+    def check_in(self,guest): 
+        if self.capacity>len(self.guests):
+            if guest.pay_entrance_fee(self.price):
+                self.till+=self.price
+                return self.guests.append(guest)
+            else:
+                return "Not enough money"
         else:
             return "The room is full! Please, wait!"   
             
     def guest_count(self):
-        return len(self.guest) 
+        return len(self.guests) 
 
     def check_out(self,guest):
-        return self.guest.remove(guest)
+        if self.guests.count(guest)!=0:
+            return self.guests.remove(guest)
 
     def empty(self):
-        return self.guest.clear()  
+        return self.guests.clear()  
+
+   
+
