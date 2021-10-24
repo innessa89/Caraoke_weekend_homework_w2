@@ -65,9 +65,12 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(1,self.room_1.guest_count())
 
     def test_non_existing_guest_check_out(self):
+        #1
         self.room_1.check_in(self.guest_2)
         self.room_1.check_in(self.guest_1)
+        #2
         self.room_1.check_out(self.guest_3)
+        #3
         self.assertEqual(2,self.room_1.guest_count())
 
     def test_empty_room(self):
